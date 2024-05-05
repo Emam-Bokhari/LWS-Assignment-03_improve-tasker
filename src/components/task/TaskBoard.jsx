@@ -1,8 +1,20 @@
 import { Fragment } from "react"
+import { useState } from "react"
 import Searchbox from "./Searchbox"
 import TaskActions from "./TaskActions"
 import TaskList from "./TaskList"
 export default function TaskBoard() {
+
+    const defaultTAsk = {
+        "id": crypto.randomUUID(),
+        "title": "Integration API",
+        "description": "Connect an existing API to a third-party database using secure methods and handle data exchange efficiently.",
+        "tags": ["Web", "Javascript", "Api"],
+        "priority": "Hight",
+        "isFavorite": false
+    }
+    const [tasks, setTasks] = useState([defaultTAsk])
+
     return (
         <Fragment>
             <section className="mb-20" id="tasks">
@@ -16,7 +28,7 @@ export default function TaskBoard() {
                         {/* Task Actions */}
                         <TaskActions />
                         {/* Task List */}
-                        <TaskList />
+                        <TaskList tasks={tasks} />
                     </div>
                 </div>
             </section>
